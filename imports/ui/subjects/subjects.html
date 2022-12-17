@@ -1,0 +1,33 @@
+<template name="subjects"> 
+  <div>
+    {{#if isInRole 'admin'}}
+      <div>
+        <form class="my_form">
+          <div class="my_form">
+            <label for="name">Subject name: </label>
+            <input type="text" placeholder="Type to add new tasks" name="text" required>
+          </div>
+          <div class="my_form">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    {{/if}}
+    <div class="table_name">Subjects</div>
+    <ul>
+      {{#each elem in subjects}}
+        {{> subject elem=elem}}
+      {{/each}}
+    </ul> 
+  </div>
+</template>
+
+<template name="subject">
+  <li>
+    {{#if isInRole 'admin'}}
+    <button class="delete">&times;</button>    
+    {{/if}}
+    <span class="text">{{elem.name}}</span> 
+  </li>
+
+</template>

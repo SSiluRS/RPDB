@@ -1,0 +1,62 @@
+<template name="enter_exams_results"> 
+  <div>
+    {{#if isInRole 'admin'}}
+      <div>
+        
+        <form class="my_form">
+          <div class="my_form">
+            <label for="id_enter">Entrant: </label>
+            <select name="id_enter">
+              {{#each elem in entrants}}
+                <option value= {{elem._id}}>
+                  {{elem.name}} {{elem.surname}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="my_form">
+            <label for="id_subj">Subject: </label>
+            <select name="id_subj">
+              {{#each elem in subjects}}
+                <option value= {{elem._id}}>
+                  {{elem.name}} {{elem.surname}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="my_form">
+            <label for="classroom">Classroom: </label>
+            <input type="text" name="classroom" required>
+          </div>
+          <div class="my_form">
+            <label for="date">Date: </label>
+            <input type="date" name="date" required>
+          </div>   
+          <div class="my_form">
+            <label for="score">Score: </label>
+            <input type="number" name="score" required>
+          </div>         
+          <div class="my_form">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    {{/if}}
+    <div class="table_name">Enter exams results</div>
+    <ul>
+      {{#each elem in enter_exams_results}}
+        {{> enter_exams_result elem=elem}}
+      {{/each}}
+    </ul> 
+  </div>
+</template>
+
+<template name="enter_exams_result">
+  <li>
+    {{#if isInRole 'admin'}}
+    <button class="delete">&times;</button>
+    {{/if}}
+    <span class="text"><b>{{entrant_name elem.id_enter}}</b> <br/>&nbsp;&nbsp;&nbsp;Subject: {{subject_name elem.id_subj}}<br/>&nbsp;&nbsp;
+    Classroom: {{elem.classroom}}<br/>&nbsp;&nbsp;&nbsp;Date: {{formatDate elem.date}}<br/>&nbsp;&nbsp;&nbsp;Score: {{elem.score}}</span> 
+  </li>
+</template>

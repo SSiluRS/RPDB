@@ -1,0 +1,54 @@
+<template name="parents"> 
+  <div>
+    {{#if isInRole 'admin'}}
+      <div>
+        <form class="my_form">
+          <div class="my_form">
+            <label for="name">Parent name: </label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="my_form">
+            <label for="surname">Parent surname: </label>
+            <input type="text" name="surname" required>
+          </div>
+          <div class="my_form">
+            <label for="patronymic">Parent patronymic: </label>
+            <input type="text" name="patronymic" required>
+          </div>
+          <div class="my_form">
+            <label for="address">Parent address: </label>
+            <input type="text" name="address" required>
+          </div>
+          <div class="my_form">
+            <label for="child">Child: </label>
+            <select name="child">
+              {{#each elem in entrants}}
+                <option value= {{elem._id}}>
+                  {{elem.name}} {{elem.surname}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="my_form">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    {{/if}}
+    <div class="table_name">Parents</div>
+    <ul>
+      {{#each elem in parents}}
+        {{> parent elem=elem}}
+      {{/each}}
+    </ul> 
+  </div>
+</template>
+
+<template name="parent">
+  <li>
+    {{#if isInRole 'admin'}}
+    <button class="delete">&times;</button>
+    {{/if}}
+    <span class="text"><b>{{elem.name}} {{elem.surname}} {{elem.patronymic}}</b><br/>&nbsp;&nbsp;&nbsp;{{elem.address}}<br/>&nbsp;&nbsp;&nbsp;Ребенок: {{entrant_name elem.child}}</span> 
+  </li>
+</template>

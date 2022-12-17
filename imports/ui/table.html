@@ -1,0 +1,37 @@
+<template name="table">  
+ 
+  
+    {{#if check_cur_table 'subjects'}}
+      {{>subjects}}    
+    {{/if}}
+
+    {{#if check_cur_table 'faculties'}}
+      {{>faculties}}    
+    {{/if}}
+    
+    {{#if check_cur_table 'institutions'}}
+    {{>institutions}} 
+    {{/if}}
+
+    {{#if check_cur_table 'specializations'}}
+      {{>specializations}} 
+    {{/if}}    
+
+    {{#if check_cur_table 'entrants'}}
+      {{>entrants}} 
+    {{/if}}
+
+    
+    {{#if check_cur_table 'parents'}}
+      {{>parents}} 
+    {{/if}}
+    
+    {{#if check_cur_table 'grad docs'}}
+      {{>grad_docs}} 
+    {{/if}}
+    
+    {{#if check_cur_table 'enter exams results'}}
+      {{>enter_exams_results}} 
+    {{/if}}
+    
+</template>

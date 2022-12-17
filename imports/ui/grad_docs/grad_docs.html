@@ -1,0 +1,57 @@
+<template name="grad_docs"> 
+  <div>
+    {{#if isInRole 'admin'}}
+      <div>
+        <form class="my_form">
+          <div class="my_form">
+            <label for="number">Number: </label>
+            <input type="number" name="number" required>
+          </div>
+          <div class="my_form">
+            <label for="av_score">Av_score: </label>
+            <input type="number" name="av_score" required>
+          </div>
+          <div class="my_form">
+            <label for="type">Type: </label>
+            <select name="type">
+                <option value= "1">
+                  Аттестат
+                </option>
+                <option value= "2">
+                  Диплом
+                </option>
+            </select>
+          </div>
+          <div class="my_form">
+            <label for="id_enter">Entrant: </label>
+            <select name="id_enter">
+              {{#each elem in entrants}}
+                <option value= {{elem._id}}>
+                  {{elem.name}} {{elem.surname}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="my_form">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    {{/if}}
+    <div class="table_name">Graduate documents</div>
+    <ul>
+      {{#each elem in grad_docs}}
+        {{> grad_doc elem=elem}}
+      {{/each}}
+    </ul> 
+  </div>
+</template>
+
+<template name="grad_doc">
+  <li>
+    {{#if isInRole 'admin'}}
+    <button class="delete">&times;</button>
+    {{/if}}
+    <span class="text"><b>{{entrant_name elem.id_enter}}</b><br/>&nbsp;&nbsp;&nbsp;Тип документа: {{elem.type}}<br/>&nbsp;&nbsp;&nbsp;Номер документа: {{elem.number}}<br/>&nbsp;&nbsp;&nbsp;Средний балл: {{elem.av_score}}</span> 
+  </li>
+</template>

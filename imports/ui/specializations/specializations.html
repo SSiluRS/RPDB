@@ -1,0 +1,42 @@
+<template name="specializations"> 
+  <div>
+    {{#if isInRole 'admin'}}
+      <div>
+        <form class="my_form">
+          <div class="my_form">
+            <label for="name">Specialization name: </label>
+            <input type="text" name="text" required>
+          </div>
+          <div class="my_form">
+            <label for="name">Faculty: </label>
+            <select id="fac_select" name="select">
+              {{#each elem in faculties}}
+                <option value= {{elem._id}}>
+                  {{elem.name}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="my_form">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    {{/if}}
+    <div class="table_name">Specializations</div>
+  <ul>
+    {{#each elem in specializations}}
+      {{> specialization elem=elem}}
+    {{/each}}
+  </ul> 
+  </div>
+</template>
+
+<template name="specialization">
+  <li>
+    {{#if isInRole 'admin'}}
+    <button class="delete">&times;</button>
+    {{/if}}
+    <span class="text">{{elem.name}}, {{faculty_name elem.faculty}}</span> 
+  </li>
+</template>
