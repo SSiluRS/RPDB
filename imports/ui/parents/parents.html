@@ -39,16 +39,55 @@
     <ul>
       {{#each elem in parents}}
         {{> parent elem=elem}}
+        {{#if isInRole 'admin'}}
+          {{#if checked elem._id}}
+            {{> parent_param elem=elem}}
+          {{/if}}
+        {{/if}}
       {{/each}}
     </ul> 
   </div>
 </template>
 
 <template name="parent">
-  <li>
+  <li class="one_parent" id={{elem._id}}>
     {{#if isInRole 'admin'}}
     <button class="delete">&times;</button>
     {{/if}}
     <span class="text"><b>{{elem.name}} {{elem.surname}} {{elem.patronymic}}</b><br/>&nbsp;&nbsp;&nbsp;{{elem.address}}<br/>&nbsp;&nbsp;&nbsp;Ребенок: {{entrant_name elem.child}}</span> 
   </li>
+</template>
+
+<template name="parent_param">
+  <form class="parent_info">
+    <div class="parent_info">
+      <label for="name">Name: </label>
+      <input type="text" name="name" value={{elem.name}} required>
+    </div>
+    <div class="parent_info">
+      <label for="surname">Surame: </label>
+      <input type="text" name="surname" value={{elem.surname}} required>
+    </div>
+    <div class="parent_info">
+      <label for="patronymic">Patronymic: </label>
+      <input type="text" name="patronymic" value={{elem.patronymic}} required>
+    </div>
+    <div class="parent_info">
+      <label for="address">Address: </label>
+      <input type="text" name="address" value={{elem.address}} required>
+    </div>
+    <div class="my_form">
+      <label for="child">Child: </label>
+      <select name="child">
+        {{#each child in entrants}}
+          <option value= {{child._id}} {{child_selected elem.child child._id}}>
+            {{child.name}} {{child.surname}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="parent_info">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
 </template>

@@ -27,16 +27,43 @@
   <ul>
     {{#each elem in specializations}}
       {{> specialization elem=elem}}
+      {{#if isInRole 'admin'}}
+          {{#if checked elem._id}}
+            {{> spec_param elem=elem}}
+          {{/if}}
+        {{/if}}
     {{/each}}
   </ul> 
   </div>
 </template>
 
 <template name="specialization">
-  <li>
+  <li class="one_spec" id={{elem._id}}>
     {{#if isInRole 'admin'}}
     <button class="delete">&times;</button>
     {{/if}}
     <span class="text">{{elem.name}}, {{faculty_name elem.faculty}}</span> 
   </li>
+</template>
+
+<template name="spec_param">
+  <form class="spec_info">
+    <div class="spec_info">
+      <label for="name">Name: </label>
+      <input type="text" name="name" value={{elem.name}} required>
+    </div>
+    <div class="spec_info">
+      <label for="faculty">Child: </label>
+      <select name="faculty">
+        {{#each faculty in faculties}}
+          <option value= {{faculty._id}} {{fac_selected elem.faculty faculty._id}}>
+            {{faculty.name}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="spec_info">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
 </template>

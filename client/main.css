@@ -54,13 +54,13 @@ div.table_list{
   background-color: transparent;
 }
 
-form.user_info { 
+form.user_info, form.parent_info, form.spec_info { 
   margin-top: 10px;
   margin-left: 20px;
   display: table;
 }
 
-div.user_info {
+div.user_info, div.parent_info, div.spec_info {
   display: table-row;
   padding-top: 20px;
   padding-left: 20px;
